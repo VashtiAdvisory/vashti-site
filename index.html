@@ -173,6 +173,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .lead + .problem { margin: -1rem 0 2rem; color: var(--muted); font-size: 1rem; max-width: 58ch; }
 
 
+.about-photo { margin: 0; }
+.about-photo img { display: block; width: 100%; max-width: 26rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; border-radius: 6px; }
+@media (min-width: 900px) {
+  .about .body { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); grid-template-areas: "text photo" "text creds"; align-items: start; row-gap: 2rem; }
+  .about-text { grid-area: text; }
+  .about-photo { grid-area: photo; }
+  .about-creds { grid-area: creds; }
+  .about-photo img { max-width: none; }
+}
+
 /* Services cards */
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -435,6 +445,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec about" id="about" aria-labelledby="about-h">
       <h2 id="about-h">About</h2>
       <div class="body">
+        <figure class="about-photo"><img src="foyin.jpg" width="996" height="1000" alt="Foyin Fagbemi, founder of Vashti Advisory" loading="lazy"></figure>
         <div class="about-text">
         <p>I am Foyin Fagbemi, an operations and supply chain leader based in London. I have worked across food and beverage, health and wellness, FMCG, logistics and luxury goods, and have overseen every stage of the supply chain, from sourcing and production planning to warehousing and distribution.</p>
         <p>I also founded Aiku (aiku.co.uk), a wellness supplements brand I built and took to market, so I understand a founder&rsquo;s cost and cash pressures first-hand.</p>
