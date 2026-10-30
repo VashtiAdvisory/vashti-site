@@ -172,6 +172,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .values .points li { margin-bottom: 1rem; }
 .lead + .problem { margin: -1rem 0 2rem; color: var(--muted); font-size: 1rem; max-width: 58ch; }
 
+
+/* Services cards */
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.cards li { position: relative; display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem 1.3rem 1.3rem; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.cards li::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%; background: var(--brass); transform: scaleX(0.18); transform-origin: left; transition: transform .35s ease; }
+.cards li:hover, .cards li:focus-within { transform: translateY(-4px); border-color: var(--line-tint); box-shadow: 0 10px 24px rgba(35, 26, 47, 0.10); }
+.cards li:hover::before, .cards li:focus-within::before { transform: scaleX(1); }
+.cards .num { font-family: var(--font-display); font-size: 1rem; color: var(--accent); letter-spacing: 0.06em; }
+.cards h3 { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.15; font-weight: 500; margin: 0; }
+.cards p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.cards .proof { margin-top: auto; padding-top: 0.9rem; border-top: 1px solid var(--line); color: var(--accent); font-size: 0.85rem; font-weight: 500; }
+.js .cards li { opacity: 0; transform: translateY(14px); }
+.js .cards li.in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease, border-color .25s ease, box-shadow .25s ease; }
+.js .cards li.in:hover, .js .cards li.in:focus-within { transform: translateY(-4px); }
+@media (prefers-reduced-motion: reduce) { .cards li, .cards li::before { transition: none; } .js .cards li { opacity: 1; transform: none; } }
+
 /* Case studies */
 .case { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; padding-block: 2.25rem; border-top: 1px solid var(--line); }
 .case:first-child { border-top: 0; padding-top: 0; }
@@ -254,7 +272,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <p class="lead">I help founder-led consumer, food and wellness brands cut supply chain cost, streamline supply and build the planning systems to scale. Eight years of documented results across FMCG, retail, manufacturing and logistics, in the UK, Europe and Africa.</p>
       <p class="problem">Rising costs, legacy inefficiencies, unreliable supply, or planning that cannot keep up with growth? That is where I come in.</p>
       <div class="actions">
-        <a class="btn" href="mailto:hello@vashtiadvisory.com?subject=Intro%20call">Book a free intro call</a>
+        <a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a>
         <a class="textlink" href="#results">See all the results</a>
       </div>
       <ul class="stats" aria-label="Headline results">
@@ -351,14 +369,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec" id="services" aria-labelledby="services-h">
       <h2 id="services-h">Services</h2>
       <div class="body">
-        <p class="intro">Six areas a brand can bring me in on, each tied to work already delivered.</p>
-        <ul class="rows two">
-          <li><span class="c1">Cost reduction and margin protection</span><span>A prioritised plan to cut spend without hurting service.</span></li>
-          <li><span class="c1">Supplier selection and RFQ</span><span>A structured tender, scored suppliers and negotiated terms.</span></li>
-          <li><span class="c1">Procurement and negotiation</span><span>Better pricing across packaging, production and components.</span></li>
-          <li><span class="c1">Forecasting and inventory planning</span><span>Models that link sales data to stock and production needs.</span></li>
-          <li><span class="c1">COGS tracking and cost visibility</span><span>Cost timelines and planners that show where margin goes.</span></li>
-          <li><span class="c1">Logistics, 3PL and process design</span><span>Carrier and 3PL reviews, plus documented processes.</span></li>
+        <p class="intro">Six areas a brand can bring me in on, each tied to results already delivered.</p>
+        <ul class="cards">
+          <li><span class="num">01</span><h3>Cost reduction and margin protection</h3><p>A prioritised plan to cut spend without hurting service.</p><p class="proof">Delivered: &pound;202k operating cost reduction</p></li>
+          <li><span class="num">02</span><h3>Supplier selection and RFQ</h3><p>A structured tender, scored suppliers and negotiated terms.</p><p class="proof">Delivered: warehousing and distribution costs down 40% year on year</p></li>
+          <li><span class="num">03</span><h3>Procurement and negotiation</h3><p>Better pricing across packaging, production and components.</p><p class="proof">Delivered: &pound;36,000+ in documented procurement savings</p></li>
+          <li><span class="num">04</span><h3>Forecasting and inventory planning</h3><p>Models that link sales data to stock and production needs.</p><p class="proof">Delivered: supply held for major retail accounts under pressure</p></li>
+          <li><span class="num">05</span><h3>COGS tracking and cost visibility</h3><p>Cost timelines and planners that show where margin goes.</p><p class="proof">Delivered: leadership sees cost drivers early</p></li>
+          <li><span class="num">06</span><h3>Logistics, 3PL and process design</h3><p>Carrier and 3PL reviews, plus documented processes.</p><p class="proof">Delivered: carrier rates renegotiated, suppliers switched where needed</p></li>
         </ul>
       </div>
     </section>
@@ -377,7 +395,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
           </ul>
           <p class="fine">Nothing starts until you have agreed the scope, cost and timeline in the proposal.</p>
           <div class="actions">
-            <a class="btn" href="mailto:hello@vashtiadvisory.com?subject=Intro%20call">Book a free intro call (30 minutes)</a>
+            <a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call (30 minutes)</a>
           </div>
         </div>
       </div>
@@ -442,7 +460,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <div class="body">
         <p class="statement">Tell me what is under pressure.</p>
         <p class="lead">If you lead a purpose-led brand and costs are rising, supply is unreliable, legacy inefficiencies are slowing you down or planning cannot keep up with growth, I would like to hear about it.</p>
-        <div class="actions"><a class="btn" href="mailto:hello@vashtiadvisory.com?subject=Intro%20call">Book a free intro call</a></div>
+        <div class="actions"><a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a></div>
         <div class="email-row">
           <a class="email" id="email-text" href="mailto:hello@vashtiadvisory.com">hello@vashtiadvisory.com</a>
           <button class="copy" id="copy-email" type="button">Copy address</button>
@@ -481,6 +499,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       } else { selectText(); }
     } catch (e) { selectText(); }
   });
+})();
+</script>
+<script>
+(function(){
+  try {
+    var items = document.querySelectorAll('.cards li');
+    if (!('IntersectionObserver' in window) || !items.length) return;
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold: 0.15});
+    items.forEach(function(el, i){ el.style.transitionDelay = ((i % 3) * 80) + 'ms'; io.observe(el); });
+  } catch (err) { document.documentElement.classList.remove('js'); }
 })();
 </script>
 </body></html>
