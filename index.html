@@ -197,6 +197,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .js .rv, .js .rv.lbl { opacity: 1; transform: none; transition: none; }
 }
 
+.bighead { font-family: var(--font-display); font-size: clamp(2.4rem, 7.5vw, 5rem); line-height: 1.02; font-weight: 400; letter-spacing: -0.01em; margin: 0 0 1.5rem; color: var(--fg); text-wrap: balance; }
+.bighead em { color: var(--accent); font-style: italic; }
+
+
+/* Results: big heading, headline numbers first */
+.sec.results { grid-template-columns: minmax(0, 1fr); gap: clamp(1.75rem, 4vw, 2.75rem); }
+.sec.results > h2 { font-family: var(--font-display); font-size: clamp(2.75rem, 8.2vw, 6rem); line-height: 1; letter-spacing: -0.015em; text-transform: none; color: var(--fg); font-weight: 400; padding-top: 0; max-width: 14ch; }
+.sec.results > h2 em { color: var(--accent); font-style: italic; }
+.results .stats { margin: 0; }
+.results .body { padding-top: clamp(0.5rem, 2vw, 1.25rem); }
+
 /* Services cards */
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -299,16 +310,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
         <a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a>
         <a class="textlink" href="#results">See all the results</a>
       </div>
+    </section>
+
+    <!-- ===== EDIT: RESULTS: the list of figures ===== -->
+    <section class="sec tint results" id="results" aria-labelledby="results-h">
+      <h2 id="results-h">These numbers could <em>be yours.</em></h2>
       <ul class="stats" aria-label="Headline results">
         <li><span class="n">&pound;202k</span><span class="l">Operating cost reduction</span></li>
         <li><span class="n">40%</span><span class="l">Lower warehousing and distribution costs, saving about &pound;60k year on year</span></li>
         <li><span class="n">45%</span><span class="l">Lower logistics costs</span></li>
       </ul>
-    </section>
-
-    <!-- ===== EDIT: RESULTS: the list of figures ===== -->
-    <section class="sec tint" id="results" aria-labelledby="results-h">
-      <h2 id="results-h">Results</h2>
       <div class="body">
         <p class="intro">Documented cost, inventory and productivity results from brands I have worked with.</p>
         <ul class="rows two">
@@ -571,7 +582,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       };
       wrap(h1);
       var base = 120 + i * 75 + 150;
-      document.querySelectorAll('.hero .eyebrow, .hero .lead, .hero .problem, .hero .actions, .hero .stats li').forEach(function(el, k) {
+      document.querySelectorAll('.hero .eyebrow, .hero .lead, .hero .problem, .hero .actions').forEach(function(el, k) {
         el.classList.add('hx');
         el.style.setProperty('--d', (el.classList.contains('eyebrow') ? 0 : base + k * 110) + 'ms');
       });
@@ -580,7 +591,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     // Section reveals.
     var targets = [];
     document.querySelectorAll('.sec > h2').forEach(function(el){ el.classList.add('lbl'); targets.push(el); });
-    document.querySelectorAll('.sec .body > p, .sec .body > div, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
+    document.querySelectorAll('.sec .body > p, .sec .body > div, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
       if (el.closest('.hero') || el.closest('.cards') || el.classList.contains('hx')) return;
       // lists that are revealed item by item do not fade as a whole
       if (el.tagName === 'UL' && el.querySelector('li') && !el.classList.contains('creds')) return;
