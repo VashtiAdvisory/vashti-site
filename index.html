@@ -221,6 +221,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .sec.results-list { grid-template-columns: minmax(0, 1fr); }
 .results-list .body { padding-top: 0; }
 
+
+.results-list .intro { text-align: center; font-weight: 700; max-width: none; margin-inline: auto; }
+
+/* Results charts */
+.charts { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .charts { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "pct sav" "pct prod"; } .charts .pct { grid-area: pct; } .charts .sav { grid-area: sav; } .charts .prod { grid-area: prod; } }
+.panel { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1.4rem 1.4rem 1.2rem; }
+.panel h4 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; line-height: 1.15; margin: 0 0 0.75rem; }
+.bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; row-gap: 0.4rem; align-items: center; padding-block: 0.7rem; }
+.bars .lab { grid-column: 1 / -1; color: var(--muted); font-size: 0.92rem; }
+.bars .track { display: block; height: 0.8rem; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bars .track i { display: block; height: 100%; width: var(--w); background: var(--btn-bg); border-radius: 99px; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+.bars.gold .track i { background: var(--brass); }
+.bars .track i.before { background: #B7ABCF; }
+.bars .val { font-family: var(--font-display); font-size: 1.6rem; line-height: 1; font-variant-numeric: lining-nums; min-width: 4.2rem; text-align: right; }
+.panel .note { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.88rem; }
+@media (prefers-reduced-motion: no-preference) { .js .panel:not(.in) .bars .track i { width: 0; } }
+
 /* Services cards */
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -321,7 +339,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <p class="problem">Rising costs, legacy inefficiencies, unreliable supply, or planning that cannot keep up with growth? That is where I come in.</p>
       <div class="actions">
         <a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a>
-        <a class="textlink" href="#results">See all the results</a>
+        <a class="textlink" href="#work">See all the results</a>
       </div>
     </section>
 
@@ -338,16 +356,34 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec results-list" aria-label="Results in detail">
       <div class="body">
         <p class="intro">Documented cost, inventory and productivity results from brands I have worked with.</p>
-        <ul class="rows two">
-          <li><span class="c1 fig">&pound;202k</span><span>Operating cost reduction year on year from an operations overhaul</span></li>
-          <li><span class="c1 fig">40%</span><span>Lower warehousing and distribution costs, year on year</span></li>
-          <li><span class="c1 fig">&pound;36k+</span><span>Documented procurement savings</span></li>
-          <li><span class="c1 fig">&pound;95k+</span><span>Raw-material and operational savings</span></li>
-          <li><span class="c1 fig">45%</span><span>Lower logistics costs</span></li>
-          <li><span class="c1 fig">33%</span><span>Lower average inventory value</span></li>
-          <li><span class="c1 fig">61% to 86%</span><span>Increase in team productivity, from clearer accountability and shared targets</span></li>
-          <li><span class="c1 fig">30% and 50%</span><span>Lower operating costs and lower export costs</span></li>
-        </ul>
+        <div class="charts">
+          <div class="panel pct">
+            <h4>Costs reduced</h4>
+            <ul class="bars">
+              <li><span class="lab">Export costs</span><span class="track" aria-hidden="true"><i style="--w:50%"></i></span><span class="val">50%</span></li>
+              <li><span class="lab">Logistics</span><span class="track" aria-hidden="true"><i style="--w:45%"></i></span><span class="val">45%</span></li>
+              <li><span class="lab">Warehousing and distribution</span><span class="track" aria-hidden="true"><i style="--w:40%"></i></span><span class="val">40%</span></li>
+              <li><span class="lab">Average inventory value</span><span class="track" aria-hidden="true"><i style="--w:33%"></i></span><span class="val">33%</span></li>
+              <li><span class="lab">Operating costs</span><span class="track" aria-hidden="true"><i style="--w:30%"></i></span><span class="val">30%</span></li>
+            </ul>
+          </div>
+          <div class="panel sav">
+            <h4>Savings delivered</h4>
+            <ul class="bars gold">
+              <li><span class="lab">Operating costs, year on year</span><span class="track" aria-hidden="true"><i style="--w:100%"></i></span><span class="val">&pound;202k</span></li>
+              <li><span class="lab">Raw-material and operational</span><span class="track" aria-hidden="true"><i style="--w:47%"></i></span><span class="val">&pound;95k+</span></li>
+              <li><span class="lab">Procurement</span><span class="track" aria-hidden="true"><i style="--w:18%"></i></span><span class="val">&pound;36k+</span></li>
+            </ul>
+          </div>
+          <div class="panel prod">
+            <h4>Team productivity</h4>
+            <ul class="bars">
+              <li><span class="lab">Before</span><span class="track" aria-hidden="true"><i class="before" style="--w:61%"></i></span><span class="val">61%</span></li>
+              <li><span class="lab">After</span><span class="track" aria-hidden="true"><i style="--w:86%"></i></span><span class="val">86%</span></li>
+            </ul>
+            <p class="note">From clearer accountability and shared targets.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -613,7 +649,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     // Section reveals.
     var targets = [];
     document.querySelectorAll('.sec > h2').forEach(function(el){ el.classList.add('lbl'); targets.push(el); });
-    document.querySelectorAll('.sec .body > p, .sec .body > h3, .sec .body > div, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
+    document.querySelectorAll('.sec .body > p, .sec .body > h3, .sec .body > div:not(.charts), .panel, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
       if (el.closest('.hero') || el.closest('.cards') || el.classList.contains('hx')) return;
       // lists that are revealed item by item do not fade as a whole
       if (el.tagName === 'UL' && el.querySelector('li') && !el.classList.contains('creds')) return;
