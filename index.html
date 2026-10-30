@@ -208,6 +208,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .results .stats { margin: 0; }
 .results .body { padding-top: clamp(0.5rem, 2vw, 1.25rem); }
 
+
+/* Large section headlines */
+.bigh { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.1rem, 5.4vw, 3.9rem); line-height: 1.04; letter-spacing: -0.012em; margin: 0 0 clamp(1.25rem, 3vw, 2rem); max-width: 16ch; color: var(--fg); }
+.bigh em { color: var(--accent); font-style: italic; white-space: nowrap; }
+.about .bigh { grid-column: 1 / -1; margin-bottom: 0; }
+@media (min-width: 900px) {
+  .about .body { grid-template-areas: "head head" "text photo" "text creds"; }
+  .about .bigh { grid-area: head; }
+}
+
+.sec.results-list { grid-template-columns: minmax(0, 1fr); }
+.results-list .body { padding-top: 0; }
+
 /* Services cards */
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -320,6 +333,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
         <li><span class="n">40%</span><span class="l">Lower warehousing and distribution costs, saving about &pound;60k year on year</span></li>
         <li><span class="n">45%</span><span class="l">Lower logistics costs</span></li>
       </ul>
+    </section>
+
+    <section class="sec results-list" aria-label="Results in detail">
       <div class="body">
         <p class="intro">Documented cost, inventory and productivity results from brands I have worked with.</p>
         <ul class="rows two">
@@ -339,6 +355,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec" id="work" aria-labelledby="work-h">
       <h2 id="work-h">Case studies</h2>
       <div class="body">
+        <h3 class="bigh">Work that moved <em>the numbers.</em></h3>
 
         <article class="case">
           <div>
@@ -404,6 +421,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec" id="services" aria-labelledby="services-h">
       <h2 id="services-h">Services</h2>
       <div class="body">
+        <h3 class="bigh">Where I can <em>help.</em></h3>
         <p class="intro">Six areas a brand can bring me in on, each tied to results already delivered.</p>
         <ul class="cards">
           <li><span class="num">01</span><h3>Cost reduction and margin protection</h3><p>A prioritised plan to cut spend without hurting service.</p><p class="proof">Delivered: &pound;202k operating cost reduction</p></li>
@@ -420,12 +438,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec tint" id="start" aria-labelledby="start-h">
       <h2 id="start-h">Start here</h2>
       <div class="body">
+        <h3 class="bigh">Start with <em>a conversation.</em></h3>
         <p class="intro">The easiest way to begin is a call to understand where your pressure points are.</p>
         <div class="offer">
-          <h3>Ongoing supply chain support</h3>
+          <h3>Here to support</h3>
           <p>After a free 30-minute call, I prepare a proposal covering every part of your supply chain where you need help. You get:</p>
           <ul class="points">
-            <li>A proposal that maps your priorities, from cost and suppliers to forecasting and logistics</li>
+            <li>A detailed document that maps your priorities, from cost and suppliers to forecasting and logistics</li>
             <li>A clear scope, cost and timeline, agreed with you before any work starts</li>
           </ul>
           <p class="fine">Nothing starts until you have agreed the scope, cost and timeline in the proposal.</p>
@@ -440,6 +459,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec" id="approach" aria-labelledby="approach-h">
       <h2 id="approach-h">Approach</h2>
       <div class="body">
+        <h3 class="bigh">From your vision to <em>the numbers.</em></h3>
         <p class="intro">I start with your vision, then align on the numbers and work outward to the supplier and process changes that move them.</p>
         <ol class="steps">
           <li><span class="n">1</span><div><strong>Get visibility</strong><span>Map spend, COGS, stock and lead times so the biggest cost drivers are clear.</span></div></li>
@@ -455,6 +475,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec tint values" id="values" aria-labelledby="values-h">
       <h2 id="values-h">Values</h2>
       <div class="body">
+        <h3 class="bigh">What you can <em>expect from me.</em></h3>
         <p class="intro">You are the visionary. I am the integrator who builds the vehicle that takes your brand where you want it to go.</p>
         <ul class="points">
           <li><strong>Your vision sets the direction.</strong> I start by understanding where you want to take the brand, then work backwards to what your supply chain must deliver to get there.</li>
@@ -470,6 +491,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec about" id="about" aria-labelledby="about-h">
       <h2 id="about-h">About</h2>
       <div class="body">
+        <h3 class="bigh">Meet <em>Foyin.</em></h3>
         <figure class="about-photo"><img src="foyin.jpg" width="996" height="1000" alt="Foyin Fagbemi, founder of Vashti Advisory" loading="lazy"></figure>
         <div class="about-text">
         <p>I am Foyin Fagbemi, an operations and supply chain leader based in London. I have worked across food and beverage, health and wellness, FMCG, logistics and luxury goods, and have overseen every stage of the supply chain, from sourcing and production planning to warehousing and distribution.</p>
@@ -591,7 +613,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     // Section reveals.
     var targets = [];
     document.querySelectorAll('.sec > h2').forEach(function(el){ el.classList.add('lbl'); targets.push(el); });
-    document.querySelectorAll('.sec .body > p, .sec .body > div, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
+    document.querySelectorAll('.sec .body > p, .sec .body > h3, .sec .body > div, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
       if (el.closest('.hero') || el.closest('.cards') || el.classList.contains('hx')) return;
       // lists that are revealed item by item do not fade as a whole
       if (el.tagName === 'UL' && el.querySelector('li') && !el.classList.contains('creds')) return;
