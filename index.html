@@ -335,6 +335,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; padding-block: 2rem 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
 .foot p { margin: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Section navigation: side rail (wide screens), menu button (all), back to top */
+.rail { display: none; position: fixed; right: 1.1rem; top: 50%; transform: translateY(-50%); z-index: 20; flex-direction: column; gap: 0.15rem; }
+.rail a { position: relative; display: block; width: 1.5rem; height: 1.5rem; }
+.rail a::before { content: ""; position: absolute; top: 50%; left: 50%; width: 0.5rem; height: 0.5rem; margin: -0.25rem 0 0 -0.25rem; border-radius: 50%; background: var(--line-tint); transition: background 0.2s, transform 0.2s; }
+.rail a:hover::before, .rail a.on::before { background: var(--accent); transform: scale(1.5); }
+.rail a span { position: absolute; right: 1.6rem; top: 50%; transform: translateY(-50%); background: var(--fg); color: var(--bg); font-size: 0.78rem; padding: 0.25rem 0.6rem; border-radius: 3px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+.rail a:hover span, .rail a:focus-visible span { opacity: 1; }
+@media (min-width: 1280px) { .rail { display: flex; } }
+.fab { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
+.fab-btn { font: inherit; font-size: 0.85rem; font-weight: 600; background: var(--btn-bg); color: #fff; border: 0; border-radius: 999px; height: 2.75rem; padding: 0 1.1rem; cursor: pointer; box-shadow: 0 2px 10px rgba(35,26,47,0.25); }
+.fab-top { width: 2.75rem; padding: 0; display: grid; place-items: center; text-decoration: none; font-size: 1.2rem; line-height: 1; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.2s, transform 0.2s, visibility 0.2s; }
+.fab-top.show { opacity: 1; visibility: visible; transform: none; }
+.fab-list { list-style: none; margin: 0; padding: 0.4rem; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 24px rgba(35,26,47,0.18); min-width: 11rem; }
+.fab-list[hidden] { display: none; }
+.fab-list a { display: block; padding: 0.55rem 0.8rem; color: var(--fg); text-decoration: none; font-size: 0.95rem; border-radius: 4px; }
+.fab-list a:hover, .fab-list a.on { background: var(--surface); }
+@media (min-width: 1280px) { .fab-menu { display: none; } }
 </style>
 </head><body>
 <div class="wrap">
@@ -345,6 +363,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <a href="#work">Case studies</a>
       <a href="#services">Services</a>
       <a href="#start">Start here</a>
+      <a href="#approach">Approach</a>
       <a href="#values">Values</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -354,7 +373,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   <main id="top">
     <!-- ===== EDIT: HERO: headline, intro paragraph and the three headline numbers ===== -->
     <section class="hero" aria-labelledby="hero-title">
-      <p class="eyebrow">Vashti Advisory &middot; London</p>
       <h1 id="hero-title">Supply chain consulting for <em>purpose-led brands.</em></h1>
       <p class="lead">I help founder-led consumer, food and wellness brands cut supply chain cost, streamline supply and build the planning systems to scale. Eight years of documented results across FMCG, retail, manufacturing and logistics, in the UK, Europe and Africa.</p>
       <p class="problem">Rising costs, legacy inefficiencies, unreliable supply, or planning that cannot keep up with growth? That is where I come in.</p>
@@ -585,7 +603,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <section class="sec contact" id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>
       <div class="body">
-        <p class="statement">Tell me what is under pressure.</p>
+        <h3 class="bigh">Tell me what is <em>under pressure.</em></h3>
         <p class="lead">If you lead a purpose-led brand and costs are rising, supply is unreliable, legacy inefficiencies are slowing you down or planning cannot keep up with growth, I would like to hear about it.</p>
         <div class="actions"><a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a></div>
         <div class="email-row">
@@ -598,7 +616,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     </section>
   </main>
 
-  <footer class="foot">
+  <nav class="rail" aria-label="Jump to section"><a href="#results" data-s="results" aria-label="Results"><span>Results</span></a><a href="#work" data-s="work" aria-label="Case studies"><span>Case studies</span></a><a href="#services" data-s="services" aria-label="Services"><span>Services</span></a><a href="#start" data-s="start" aria-label="Start here"><span>Start here</span></a><a href="#approach" data-s="approach" aria-label="Approach"><span>Approach</span></a><a href="#values" data-s="values" aria-label="Values"><span>Values</span></a><a href="#about" data-s="about" aria-label="About"><span>About</span></a><a href="#contact" data-s="contact" aria-label="Contact"><span>Contact</span></a></nav>
+<div class="fab">
+  <ul class="fab-list" id="fab-list" hidden><li><a href="#results" data-s="results">Results</a></li><li><a href="#work" data-s="work">Case studies</a></li><li><a href="#services" data-s="services">Services</a></li><li><a href="#start" data-s="start">Start here</a></li><li><a href="#approach" data-s="approach">Approach</a></li><li><a href="#values" data-s="values">Values</a></li><li><a href="#about" data-s="about">About</a></li><li><a href="#contact" data-s="contact">Contact</a></li></ul>
+  <button class="fab-btn fab-menu" id="fab-menu" type="button" aria-expanded="false" aria-controls="fab-list">Sections</button>
+  <a class="fab-btn fab-top" id="fab-top" href="#top" aria-label="Back to top">&uarr;</a>
+</div>
+<footer class="foot">
     <p>&copy; 2026 Vashti Advisory. London, UK.</p>
     <p>Supply chain consulting for purpose-led brands.</p>
   </footer>
@@ -724,4 +748,28 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   } catch (err) { document.documentElement.classList.remove('js'); }
 })();
 </script>
+<script>
+(function(){
+  try {
+    var top=document.getElementById('fab-top'), menu=document.getElementById('fab-menu'), list=document.getElementById('fab-list');
+    function onScroll(){ top.classList.toggle('show', (window.pageYOffset||document.documentElement.scrollTop) > 500); }
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    top.addEventListener('click', function(e){ e.preventDefault(); window.scrollTo({top:0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); });
+    function close(){ list.hidden=true; menu.setAttribute('aria-expanded','false'); }
+    menu.addEventListener('click', function(e){ e.stopPropagation(); var o=list.hidden; list.hidden=!o; menu.setAttribute('aria-expanded', o?'true':'false'); });
+    list.addEventListener('click', close);
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    var links=document.querySelectorAll('[data-s]');
+    var secs=Array.prototype.slice.call(document.querySelectorAll('main section[id]')).filter(function(s){ return document.querySelector('[data-s="'+s.id+'"]'); });
+    function spy(){
+      var y=window.innerHeight*0.35, cur='';
+      secs.forEach(function(s){ var r=s.getBoundingClientRect(); if(r.top<=y && r.bottom>y) cur=s.id; });
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-s')===cur); });
+    }
+    window.addEventListener('scroll', spy, {passive:true}); spy();
+  } catch (err) {}
+})();
+</script>
+
 </body></html>
