@@ -224,6 +224,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 .results-list .intro { text-align: center; font-weight: 700; max-width: none; margin-inline: auto; }
 
+
+/* Who is behind this */
+.whois { display: flex; align-items: stretch; gap: clamp(1.1rem, 3vw, 2rem); padding-block: 0 clamp(2.5rem, 6vw, 4rem); }
+.whois-photo { flex: none; position: relative; width: clamp(6rem, 17vw, 10rem); border-radius: 6px; overflow: hidden; }
+.whois-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; display: block; }
+.whois-text { min-width: 0; }
+@media (max-width: 600px) {
+  .whois { display: grid; grid-template-columns: 6.5rem 1fr; grid-template-areas: "photo hello" "photo name" "photo role" "line line" "link link"; column-gap: 1.1rem; row-gap: 0; align-items: start; }
+  .whois-text { display: contents; }
+  .whois-photo { grid-area: photo; width: auto; aspect-ratio: 4 / 5; align-self: start; }
+  .whois .whois-hello { grid-area: hello; align-self: end; margin: 0 0 0.25rem; }
+  .whois .whois-name { grid-area: name; align-self: start; }
+  .whois .whois-role { grid-area: role; align-self: start; margin-bottom: 0; }
+  .whois .whois-line { grid-area: line; margin-top: 1rem; }
+  .whois .textlink { grid-area: link; justify-self: start; }
+}
+.whois .whois-hello { margin: 0 0 0.35rem; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.02em; }
+.whois .whois-name { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1; margin: 0; }
+.whois .whois-role { margin: 0.2rem 0 0.6rem; color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+.whois .whois-line { margin: 0 0 0.5rem; color: var(--muted); max-width: 52ch; font-size: 0.98rem; }
+
 /* Results charts */
 .charts { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 900px) { .charts { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "pct sav" "pct prod"; } .charts .pct { grid-area: pct; } .charts .sav { grid-area: sav; } .charts .prod { grid-area: prod; } }
@@ -340,6 +361,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <div class="actions">
         <a class="btn" href="https://calendly.com/foyin-vashtiadvisory/30min" target="_blank" rel="noopener">Book a free intro call</a>
         <a class="textlink" href="#work">See all the results</a>
+      </div>
+    </section>
+
+    <!-- ===== EDIT: WHO IS BEHIND THIS: photo, name and one line ===== -->
+    <section class="whois" aria-label="About the founder">
+      <div class="whois-photo"><img src="foyin-strip.jpg" width="600" height="750" alt="Foyin Fagbemi speaking at an event" loading="lazy"></div>
+      <div class="whois-text">
+        <p class="whois-hello">Hello, I’m</p>
+        <p class="whois-name">Foyin Fagbemi</p>
+        <p class="whois-role">Founder, Vashti Advisory</p>
+        <p class="whois-line">I lead operations and supply chain for food, wellness, FMCG and luxury brands.</p>
+        <a class="textlink" href="#about">More about me</a>
       </div>
     </section>
 
@@ -649,7 +682,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     // Section reveals.
     var targets = [];
     document.querySelectorAll('.sec > h2').forEach(function(el){ el.classList.add('lbl'); targets.push(el); });
-    document.querySelectorAll('.sec .body > p, .sec .body > h3, .sec .body > div:not(.charts), .panel, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
+    document.querySelectorAll('.sec .body > p, .whois, .sec .body > h3, .sec .body > div:not(.charts), .panel, .sec .body > article, .sec .body > figure, .sec .body > ul:not(.cards), .stats li, .about-text p, .case li, .rows li, .points li, .steps li, .lead').forEach(function(el){
       if (el.closest('.hero') || el.closest('.cards') || el.classList.contains('hx')) return;
       // lists that are revealed item by item do not fade as a whole
       if (el.tagName === 'UL' && el.querySelector('li') && !el.classList.contains('creds')) return;
