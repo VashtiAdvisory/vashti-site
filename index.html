@@ -133,6 +133,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .offer h3 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 500; line-height: 1.12; margin: 0 0 0.75rem; }
 .offer .points { margin: 1rem 0 1.25rem; }
 .offer .fine { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.5rem; }
+.ways-h { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 1.9rem); font-weight: 500; line-height: 1.15; margin: 0 0 1rem; }
+.ways { margin-bottom: 0.75rem; }
+@media (min-width: 720px) { .cards.ways { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.fees-bar { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.6rem 2rem; align-items: center; background: var(--btn-bg); color: #FBF9F5; border-radius: 6px; padding: 1.2rem 1.4rem; margin: 0 0 1.5rem; }
+@media (min-width: 720px) { .fees-bar { grid-template-columns: auto minmax(0, 1fr); padding: 1.25rem 1.6rem; } }
+.fees-lead { display: flex; flex-direction: column; gap: 0.2rem; }
+.fees-k { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #D7B785; }
+.fees-big { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2rem); line-height: 1.1; white-space: nowrap; }
+.fees-big em { color: #D7B785; }
+.fees-bar p { margin: 0; color: #E9E4F2; font-size: 0.95rem; max-width: 60ch; }
+.ways-note-unused { background: var(--bg); border: 1px solid var(--line-tint); border-left: 3px solid var(--brass); border-radius: 6px; color: var(--fg); font-size: 0.98rem; margin: 0 0 2rem; padding: 1.1rem 1.3rem; }
 .points strong { font-weight: 600; }
 
 /* Tinted sections: off-white page, light purple highlights */
@@ -527,9 +538,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       <div class="body">
         <h3 class="bigh">Start with <em>a conversation.</em></h3>
         <p class="intro">The easiest way to begin is a call to understand where your pressure points are.</p>
+        <h3 class="ways-h">How we can work together</h3>
+        <ul class="cards ways">
+          <li><span class="num">01</span><h3>Ops review</h3><p>A two to three week review of your supply chain, finishing with a written action plan.</p><p class="proof">Fixed fee, agreed before we start</p></li>
+          <li><span class="num">02</span><h3>Monthly retainer</h3><p>An agreed number of days each month for ongoing support, from four days a month.</p><p class="proof">Discounted monthly day rate</p></li>
+          <li><span class="num">03</span><h3>Project</h3><p>A defined piece of work, such as a supplier tender, a 3PL selection or getting ready for retail.</p><p class="proof">Clear scope and timeline</p></li>
+        </ul>
+        <div class="fees-bar">
+          <div class="fees-lead"><span class="fees-k">Fees, across all three</span><span class="fees-big">From <em>&pound;750</em> a day</span></div>
+          <p>Scope and cost are fixed before work begins. On larger projects with a measurable saving, part of the fee is tied to the result. Vashti Advisory gains only when you do.</p>
+        </div>
         <div class="offer">
           <h3>Here to support</h3>
-          <p>After a free 30-minute call, I prepare a proposal covering every part of your supply chain where you need help. You get:</p>
+          <p>After a free 30-minute call, a proposal follows, covering every part of your supply chain where you need help. It includes:</p>
           <ul class="points">
             <li>A detailed document that maps your priorities, from cost and suppliers to forecasting and logistics</li>
             <li>A clear scope, cost and timeline, agreed with you before any work starts</li>
